@@ -23,6 +23,36 @@ const data = [
   }
 ]
 
+/*
+// event delegation X
+$('.navigation > li').click(function(e){
+  e.preventDefault();   // a태그가 이동하지 않음
+  let index = $(this).index();
+
+  $('.navigation > li').removeClass('is-active');
+  $(this).addClass('is-active');
+
+  $('.visual img').attr({
+    'src':`./assets/part01/${data[index].src}`,
+    'alt':data[index].alt})
+});
+*/
+
+// event delegation O
+$('.navigation').on('click','li',function(e){
+  e.preventDefault();
+
+  let index = $(this).attr('data-index');
+  
+  $('.navigation > li').removeClass('is-active');
+  $(this).addClass('is-active');
+
+  $('.visual img').attr({
+    'src':`./assets/part01/${data[index-1].src}`,
+    'alt':data[index-1].alt
+  })
+
+});
 
 
 
